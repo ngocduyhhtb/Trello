@@ -29,7 +29,6 @@
     border-bottom-right-radius: $column-border-radius;
     color: #888;
     .footer-actions {
-      margin-left: $gap;
       cursor: pointer;
       &:hover {
         color: $app-main-text-color;
@@ -49,8 +48,8 @@
       width: 11px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: darken($list-bg-color, 15);
-      border-radius: $column-border-radius solid $list-bg-color;
+      background-color: darken($column-bg-color, 15);
+      border-radius: $column-border-radius solid $column-bg-color;
     }
     .card-ghost {
       transition: transform 0.18s ease;
