@@ -11,11 +11,14 @@ import {
   selectAllInlineText,
 } from "utilities/contentEditable";
 const Column = ({ column, onCardDrop, onUpdateColumn }) => {
+  //State
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [columnTitle, setColumnTitle] = useState("");
+  //Effect
   useEffect(() => {
     setColumnTitle(column.title);
   }, [column.title]);
+
   const cards = mapOrder(column.cards, column.cardOrder, "id");
   const toggleConfirmModal = () => setShowConfirmModal(!showConfirmModal);
   const onConfirmModalAction = (type) => {
