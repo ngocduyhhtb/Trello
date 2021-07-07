@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./BoardContent.scss";
 import Column from "components/Column/Column";
 import { initialData } from "actions/initialData";
@@ -19,11 +19,11 @@ const BoardContent = () => {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState("");
 
+  const toggleOpenNewColumnForm = () => {
+    setOpenNewColumnForm(!openNewColumnForm);
+  };
   const newColumnInputRef = useRef(null);
-  const onNewColumnTitleChange = useCallback(
-    (e) => setNewColumnTitle(e.target.value),
-    []
-  );
+  const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
       (board) => board.id === "board-1"
@@ -63,9 +63,6 @@ const BoardContent = () => {
       currentColumn.cardOrder = currentColumn.cards.map((card) => card.id);
       setColumns(newColumns);
     }
-  };
-  const toggleOpenNewColumnForm = () => {
-    setOpenNewColumnForm(!openNewColumnForm);
   };
   const addNewColumn = () => {
     if (!newColumnTitle) {
@@ -156,15 +153,14 @@ const BoardContent = () => {
                 onChange={onNewColumnTitleChange}
                 onKeyDown={(event) => event.key === "Enter" && addNewColumn()}
               ></Form.Control>
-              <Button variant="success" size="sm" onClick={addNewColumn}>
-                Add Column
-              </Button>{" "}
-              <span
-                className="cancel-new-column"
-                onClick={toggleOpenNewColumnForm}
-              >
-                <i className="fa fa-times icon"></i>
-              </span>
+              <div className="add-item-control">
+                <Button variant="success" size="sm" onClick={addNewColumn}>
+                  Add Column
+                </Button>{" "}
+                <span className="cancel-icon" onClick={toggleOpenNewColumnForm}>
+                  <i className="fa fa-times icon"></i>
+                </span>
+              </div>
             </Col>
           </Row>
         )}
