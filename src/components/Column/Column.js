@@ -97,7 +97,9 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
               className="dropdown-btn"
             />
             <Dropdown.Menu>
-              <Dropdown.Item>Add card</Dropdown.Item>
+              <Dropdown.Item onClick={toggleOpenNewCardForm}>
+                Add card
+              </Dropdown.Item>
               <Dropdown.Item onClick={toggleConfirmModal}>
                 Remove column
               </Dropdown.Item>
